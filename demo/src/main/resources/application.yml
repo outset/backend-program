@@ -1,0 +1,31 @@
+mybatis:
+  type-aliases-package:
+    com.example.demo
+  mapper-locations:
+    classpath:mapping/*.xml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/wxtest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+    driver: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+
+wechat:
+  appid: wx9651ce0cfbfa5d2e
+  ##wx207bf36714907ae2
+  secret: 0717aNc90wEXKz1gDJ990t2Mc907aNco
+  ##7aaa17bd243ecc39cc14d4984312e009
+    
+
+
