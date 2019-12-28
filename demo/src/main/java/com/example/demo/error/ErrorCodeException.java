@@ -1,5 +1,8 @@
 package com.example.demo.error;
 
+import lombok.Setter;
+
+@Setter
 public class ErrorCodeException extends RuntimeException implements IErrorCode {
     private Integer code;
     private String message;
@@ -14,16 +17,8 @@ public class ErrorCodeException extends RuntimeException implements IErrorCode {
         return null;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
     @Override
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

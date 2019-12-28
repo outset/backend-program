@@ -2,11 +2,13 @@ package com.example.demo.dto;
 
 
 import com.example.demo.error.IErrorCode;
+import lombok.Data;
 
 /**
  * Created by codedrinker on 2018/11/25.
  */
 
+@Data
 public class ResultDTO {
     private Integer status;
     private Object data;
@@ -32,29 +34,5 @@ public class ResultDTO {
         resultDTO.setStatus(errorCode.getCode());
         resultDTO.setMessage(errorCode.getMessage());
         return resultDTO;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
