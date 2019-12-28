@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.Dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.example.demo.Model.User">
-    <id column="uid" jdbcType="VARCHAR" property="uid" />
-    <result column="openid" jdbcType="CHAR" property="openid" />
-    <result column="nickName" jdbcType="VARCHAR" property="nickname" />
-    <result column="token" jdbcType="VARCHAR" property="token" />
-    <result column="avatarUrl" jdbcType="VARCHAR" property="avatarurl" />
-    <result column="gender" jdbcType="TINYINT" property="gender" />
+<mapper namespace="com.example.demo.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.User">
+    <id column="uid" jdbcType="VARCHAR" property="uid"/>
+    <result column="openid" jdbcType="CHAR" property="openid"/>
+    <result column="nickName" jdbcType="VARCHAR" property="nickname"/>
+    <result column="token" jdbcType="VARCHAR" property="token"/>
+    <result column="avatarUrl" jdbcType="VARCHAR" property="avatarurl"/>
+    <result column="gender" jdbcType="TINYINT" property="gender"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +70,15 @@
   <sql id="Base_Column_List">
     uid, openid, nickName, token, avatarUrl, gender
   </sql>
-  <select id="selectByExample" parameterType="com.example.demo.Model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.demo.model.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from user
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Example_Where_Clause"/>
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
@@ -94,21 +94,21 @@
     delete from user
     where uid = #{uid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.demo.Model.UserExample">
+  <delete id="deleteByExample" parameterType="com.example.demo.model.UserExample">
     delete from user
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Example_Where_Clause"/>
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.demo.Model.User">
-    insert into user (uid, openid, nickName, 
-      token, avatarUrl, gender
-      )
-    values (#{uid,jdbcType=VARCHAR}, #{openid,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{token,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}
-      )
+  <insert id="insert" parameterType="com.example.demo.model.User">
+    insert into user (uid, openid, nickName,
+    token, avatarUrl, gender
+    )
+    values (#{uid,jdbcType=VARCHAR}, #{openid,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR},
+    #{token,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.Model.User">
+  <insert id="insertSelective" parameterType="com.example.demo.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -151,10 +151,10 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.demo.Model.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.example.demo.model.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Example_Where_Clause"/>
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.Model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.User">
     update user
     <set>
       <if test="openid != null">
@@ -216,24 +216,25 @@
     </set>
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.Model.User">
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.User">
     update user
     set openid = #{openid,jdbcType=CHAR},
-      nickName = #{nickname,jdbcType=VARCHAR},
-      token = #{token,jdbcType=VARCHAR},
-      avatarUrl = #{avatarurl,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=TINYINT}
+    nickName = #{nickname,jdbcType=VARCHAR},
+    token = #{token,jdbcType=VARCHAR},
+    avatarUrl = #{avatarurl,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=TINYINT}
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="com.example.demo.Model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.example.demo.model.UserExample"
+          resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from user
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Example_Where_Clause"/>
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
