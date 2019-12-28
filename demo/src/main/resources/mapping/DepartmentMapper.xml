@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.DepartmentMapper">
-    <resultMap id="BaseResultMap" type="com.example.demo.Department">
+<mapper namespace="com.example.demo.dao.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.Department">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -79,7 +79,7 @@
         <!-- @mbg.generated: generated automatically, do not modify! -->
         id, `name`, `level`, parent_id, seq, mtime, ctime, muser_id, cuser_id
     </sql>
-    <select id="selectByExample" parameterType="com.example.demo.DepartmentExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.example.demo.model.DepartmentExample" resultMap="BaseResultMap">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         select
         <if test="distinct">
@@ -106,14 +106,14 @@
         delete from department
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.example.demo.DepartmentExample">
+    <delete id="deleteByExample" parameterType="com.example.demo.model.DepartmentExample">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         delete from department
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.example.demo.Department">
+    <insert id="insert" parameterType="com.example.demo.model.Department">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         insert into department (id, `name`, `level`,
         parent_id, seq, mtime,
@@ -124,7 +124,7 @@
         #{ctime,jdbcType=INTEGER}, #{muserId,jdbcType=INTEGER}, #{cuserId,jdbcType=INTEGER}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.example.demo.Department">
+    <insert id="insertSelective" parameterType="com.example.demo.model.Department">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         insert into department
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -186,7 +186,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.example.demo.DepartmentExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.example.demo.model.DepartmentExample" resultType="java.lang.Long">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         select count(*) from department
         <if test="_parameter != null">
@@ -245,7 +245,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.Department">
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Department">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         update department
         <set>
@@ -276,7 +276,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.example.demo.Department">
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Department">
         <!-- @mbg.generated: generated automatically, do not modify! -->
         update department
         set `name` = #{name,jdbcType=VARCHAR},

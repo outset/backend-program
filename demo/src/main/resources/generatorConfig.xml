@@ -6,7 +6,7 @@
 <generatorConfiguration>
     <!--这个是依赖的路径，记得替换成自己的-->
     <classPathEntry
-            location="D:\Idea_Maven\m2\repository\mysql\mysql-connector-java\8.0.16\mysql-connector-java-8.0.16.jar"/>
+            location="C:\User\6\m2\repository\mysql\mysql-connector-java\8.0.16\mysql-connector-java-8.0.16.jar"/>
 
     <context id="table" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"></plugin>
