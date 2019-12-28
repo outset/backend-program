@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/")
 public class Wx_ShowTitles {
 
-    @GetMapping("/question/list")
+    @GetMapping({"/question/list", "/test/question/list"})
     public List<String> get01(Integer page, Integer size) {
 
         List<String> title = new ArrayList<String>();
