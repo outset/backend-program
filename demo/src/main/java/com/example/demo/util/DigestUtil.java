@@ -5,9 +5,6 @@ import com.example.demo.error.CommonErrorCode;
 import com.example.demo.error.ErrorCodeException;
 import org.apache.commons.codec.digest.DigestUtils;
 
-/**
- * Created by codedrinker on 2018/11/25.
- */
 
 public class DigestUtil {
     public static void checkDigest(String rawData, String sessionKey, String signature) {

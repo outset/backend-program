@@ -3,10 +3,6 @@ package com.example.demo.dto;
 
 import lombok.Data;
 
-/**
- * Created by codedrinker on 2018/11/24.
- */
-
 @Data
 public class LoginDTO {
     // 用户信息原始数据

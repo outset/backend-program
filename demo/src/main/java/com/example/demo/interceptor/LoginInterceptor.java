@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-/**
- * Created by codedrinker on 2018/12/2.
- */
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {

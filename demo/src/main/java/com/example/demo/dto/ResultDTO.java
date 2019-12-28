@@ -4,9 +4,6 @@ package com.example.demo.dto;
 import com.example.demo.error.IErrorCode;
 import lombok.Data;
 
-/**
- * Created by codedrinker on 2018/11/25.
- */
 
 @Data
 public class ResultDTO {

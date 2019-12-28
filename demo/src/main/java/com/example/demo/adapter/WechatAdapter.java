@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-/**
- * Created by codedrinker on 2018/11/24.
- */
 @Service
 public class WechatAdapter {
     private final Logger logger = LoggerFactory.getLogger(WechatAdapter.class);
