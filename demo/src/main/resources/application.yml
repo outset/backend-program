@@ -26,6 +26,19 @@ wechat:
   ##wx207bf36714907ae2
   secret: 0717aNc90wEXKz1gDJ990t2Mc907aNco
   ##7aaa17bd243ecc39cc14d4984312e009
-    
 
+redis:
+  connection_timeout: 2000
+  max_attempts: 10
+  pool:
+    maxIdle: 200
+    maxTotal: 800
+    maxWait: 3000
+    minIdle: 50
+  so_timeout: 2000
+  node:
+    password:
+  node1:
+    ip: 127.0.0.1
+    port: 6379
 

@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.Idempotent;
 import com.example.demo.annotation.UserAuthenticate;
 import com.example.demo.annotation.UserInject;
 import com.example.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class Wx_ShowTitles {
 
     @GetMapping({"/question/list", "/test/question/list"})
     @UserAuthenticate(permission = true)
+    @Idempotent(body = true, bodyVals = {"loan:loanNumber"})
+    @ResponseBody
     public List<String> get01(@UserInject User user, Integer page, Integer size) {
         log.info("get request from User {}", user);
 
@@ -27,7 +31,5 @@ public class Wx_ShowTitles {
         System.out.print("title[0]:" + title.get(0));
         System.out.print("title[1]:" + title.get(1));
         return title;
-
     }
-
 }
