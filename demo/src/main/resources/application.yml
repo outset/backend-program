@@ -20,6 +20,11 @@ spring:
         max-idle: 8
         min-idle: 0
         max-wait: -1ms
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+
 
 wechat:
   appid: wx9651ce0cfbfa5d2e
