@@ -43,9 +43,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        }
 
         //  always allow for /test/* api
-        if (url.startsWith("/test/")) {
-            return true;
-        }
+//        if (url.startsWith("/api/test/")) {
+//            return true;
+//        }
 
         //  允许login地址无需登陆即可访问 
         if (url.indexOf("/api/login") >= 0) {

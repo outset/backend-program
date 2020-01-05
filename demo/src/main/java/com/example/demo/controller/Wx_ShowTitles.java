@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.annotation.ApiVersion;
 import com.example.demo.annotation.Idempotent;
 import com.example.demo.annotation.UserAuthenticate;
 import com.example.demo.annotation.UserInject;
@@ -14,16 +15,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/{version}")
 @Slf4j
 public class Wx_ShowTitles {
 
-    @GetMapping({"/question/list", "/test/question/list"})
+    @ApiVersion(1)
+    @GetMapping("/question/list")
     @UserAuthenticate(permission = true)
     @Idempotent(body = true, bodyVals = {"loan:loanNumber"})
     @ResponseBody
     public List<String> get01(@UserInject User user, Integer page, Integer size) {
         log.info("get request from User {}", user);
+
+        List<String> title = new ArrayList<>();
+        title.add("A");
+        title.add("B");
+        System.out.print("title[0]:" + title.get(0));
+        System.out.print("title[1]:" + title.get(1));
+        return title;
+    }
+
+    @ApiVersion(3)
+    @GetMapping("/question/list")
+    @UserAuthenticate(permission = true)
+    @Idempotent(body = true, bodyVals = {"loan:loanNumber"})
+    @ResponseBody
+    public List<String> get02(@UserInject User user, Integer page, Integer size) {
+        log.info("get02 get request from User {}", user);
 
         List<String> title = new ArrayList<>();
         title.add("A");

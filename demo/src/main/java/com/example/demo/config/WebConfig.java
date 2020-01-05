@@ -31,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
         registration.setFilter(new HttpServletRequestReplacedFilter());
         registration.addUrlPatterns("/*");
         registration.setName("httpServletRequestReplacedFilter");
-        registration.setOrder(1);
+        registration.setOrder(0);
         return registration;
     }
 
