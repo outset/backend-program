@@ -7,7 +7,6 @@ import com.example.demo.annotation.UserInject;
 import com.example.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/{version}")
 @Slf4j
 public class Wx_ShowTitles {
 
-    @ApiVersion(1)
-    @GetMapping("/question/list")
+    @ApiVersion(Urls.Version.V1)
+    @GetMapping(Urls.SHOW_TITLE)
     @UserAuthenticate(permission = true)
     @Idempotent(body = true, bodyVals = {"loan:loanNumber"})
     @ResponseBody
@@ -35,8 +33,8 @@ public class Wx_ShowTitles {
         return title;
     }
 
-    @ApiVersion(3)
-    @GetMapping("/question/list")
+    @ApiVersion(Urls.Version.V2)
+    @GetMapping(Urls.SHOW_TITLE)
     @UserAuthenticate(permission = true)
     @Idempotent(body = true, bodyVals = {"loan:loanNumber"})
     @ResponseBody

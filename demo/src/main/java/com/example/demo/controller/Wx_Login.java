@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.adapter.WechatAdapter;
+import com.example.demo.annotation.ApiVersion;
 import com.example.demo.dto.LoginDTO;
 import com.example.demo.dto.ResultDTO;
 import com.example.demo.dto.SessionDTO;
@@ -20,7 +21,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/")
 public class Wx_Login {
 
     @Autowired
@@ -30,7 +30,8 @@ public class Wx_Login {
     private UserService userService;
 
 
-    @RequestMapping("api/login")
+    @ApiVersion(Urls.Version.V1)
+    @RequestMapping(Urls.LOGIN_URL)
     public ResultDTO login(@RequestBody LoginDTO loginDTO) {
         try {
             //获取openid和session_key
