@@ -14,7 +14,7 @@ public class ErrorCodeException extends RuntimeException implements IErrorCode {
 
     @Override
     public Integer getCode() {
-        return null;
+        return code;
     }
 
     @Override
