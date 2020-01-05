@@ -19,10 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
+
+    // 路径中版本的前缀， 这里用 /v[1-9]/的形式
+    private final static Pattern LOGIN_PATH_PATTERN = Pattern.compile("/api/v(\\d+)/login");
 
     @Autowired
     private UserService userService;
@@ -47,11 +52,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 //            return true;
 //        }
 
-        //  允许login地址无需登陆即可访问 
-        if (url.indexOf("/api/login") >= 0) {
+        //  允许login地址无需登陆即可访问
+        Matcher m = LOGIN_PATH_PATTERN.matcher(url);
+        if (m.find()) {
             return true;
         }
-
 
         //请求之前，验证通过返回true，验证失败返回false
         String token = request.getHeader(HeaderConstant.TOKEN);

@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.interceptor.CustomRequestMappingHandlerMapping;
 import com.example.demo.interceptor.HttpServletRequestReplacedFilter;
 import com.example.demo.interceptor.IdempotentInterceptor;
 import com.example.demo.interceptor.LoginInterceptor;
@@ -9,12 +10,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.List;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig extends WebMvcConfigurationSupport {
     @Bean
     public HandlerInterceptor getLoginInterceptor() {
         return new LoginInterceptor();
@@ -41,7 +43,17 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(getIdempotentInterceptor());
     }
 
+    @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(new UserMethodArgumentResolver());
+    }
+
+    @Override
+    @Bean
+    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+        RequestMappingHandlerMapping handlerMapping = new CustomRequestMappingHandlerMapping();
+        handlerMapping.setOrder(0);
+        handlerMapping.setInterceptors(getInterceptors());
+        return handlerMapping;
     }
 }
