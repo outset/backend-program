@@ -36,7 +36,9 @@ public class UserServiceImpl implements UserService {
     @Override
 
     public String selectByToken(String token) {
-        return this.userMapper.selectByToken(token);
+//        return this.userMapper.selectByToken(token);
+
+        return null;
     }
 
 
