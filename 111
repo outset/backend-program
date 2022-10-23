@@ -1,6 +1,20 @@
-        List<Integer> ids = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            ids.add(i); // [0,1,2,3,4,5]
-        }
-        System.out.println(ids);
-        ids.remove(3);
+public static int solution(String[] list){
+       Map<String,Integer> map  = new HashMap<>();
+       map.put("B",0);
+       map.put("N",0);
+       map.put("A",0);
+
+       for(int i=0;i<list.length;i++){
+           if(map.get(list[i])!=null) map.put(list[i],map.get(list[i])+1);
+       }
+
+       Integer B = map.get("B");
+       Integer N = map.get("N")/2;
+       Integer A = map.get("A")/3;
+
+       int min = B;
+       if (N<min) min = N;
+       if(A<min) min = A;
+
+       return min;
+    }
