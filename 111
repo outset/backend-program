@@ -1,11 +1,11 @@
-public static int solution(String[] list){
+public static int solution(String S){
        Map<String,Integer> map  = new HashMap<>();
        map.put("B",0);
        map.put("N",0);
        map.put("A",0);
-
+       char [] list = S.toCharArray();
        for(int i=0;i<list.length;i++){
-           if(map.get(list[i])!=null) map.put(list[i],map.get(list[i])+1);
+           if(map.get(list[i]+"")!=null) map.put(list[i]+"",map.get(list[i]+"")+1);
        }
 
        Integer B = map.get("B");
