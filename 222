@@ -1,56 +1,49 @@
-class Solution {
-    public String removeOccurrences(String s, String part) {
-        if (s.length() < part.length()) {
-            return s;
-        }
-        char[] chars2 = part.toCharArray();
-        int len2 = chars2.length;
-        int[] p = new int[len2];
-        // p中m位置记录数值n,表示[0,n-1]的字符串同[m-n+1,m]字符串相同
-        for (int i = 1, j = 0; i < len2 && j < len2; i++) {
-            while (j > 0 && chars2[j] != chars2[i]) {
-                j = p[j - 1];
-            }
-            if (chars2[i] == chars2[j]) {
-                j++;
-            }
-            p[i] = j;
-        }
-        return this.remove(s, part, p);
-    }
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-    public String remove(String s, String part, int[] p) {
-        if (s.length() < part.length()) {
-            return s;
-        }
-        char[] chars1 = s.toCharArray();
-        char[] chars2 = part.toCharArray();
-        int len1 = chars1.length;
-        int len2 = chars2.length;
-        int start = -1;
-        for (int i = 0, j = 0; i < len1 && j < len2; i++) {
-            while (j > 0 && chars2[j] != chars1[i]) {
-                j = p[j - 1];
-            }
-            if (chars2[j] == chars1[i]) {
-                j++;
-            }
-            if (j == len2) {
-                start = i - j + 1;// i-(j-1)
-                break;
-            }
-        }
-        if (start == -1) {
-            return s;
-        }
-        char[] rest = new char[len1 - len2];
-        int prest = 0;
-        for (int i = 0; i < start; i++) {
-            rest[prest++] = chars1[i];
-        }
-        for (int i = start + len2; i < len1; i++) {
-            rest[prest++] = chars1[i];
-        }
-        return this.remove(new String(rest), part, p);
-    }
+public class Application {
+    public static void main(String[] args) {
+        int [] list = new int[] {99,266662,999,22,43,232,343,56675};
+        System.out.println(solution(list));
+
+    }
+
+    public static int solution(int[] list){
+        Map<String, List<Integer>> map = new HashMap<>();
+        List<Integer> li ;
+        for (int i=0;i< list.length;i++){
+            String key = getKey(list[i]);
+            if(map.get(key)!=null) map.get(key).add(list[i]);
+            else {
+                li = new ArrayList<>();
+                li.add(list[i]);
+                map.put(key,li);
+            }
+        }
+        System.out.println(map);
+        List<Integer> res = new ArrayList<>();
+        for (List<Integer> l: map.values()){
+            if(l.size()>1){
+                int sublength = l.size();
+                if(sublength==2) res.add(l.get(0)+l.get(1));
+                else{
+                    List<Integer> subList = l.stream().sorted().collect(Collectors.toList());
+                    res.add(subList.get(sublength-2)+subList.get(sublength-1));
+                }
+
+            }
+        }
+        return res.stream().sorted().collect(Collectors.toList()).get(res.size()-1);
+    }
+    public static String getKey( int num){
+        if (num<10)return num+"";
+        String h = num+"";
+        h = h.substring(0,1);
+        String l = num+"";
+        l = l.substring(l.length()-1);
+        return h+l;
+    }
 }
